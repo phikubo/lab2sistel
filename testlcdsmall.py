@@ -1,4 +1,4 @@
-#Por michael
+#Por michael para probar el lcd 5110. Plotea onda seno
 import gc
 import sys, time
 import pcd8544

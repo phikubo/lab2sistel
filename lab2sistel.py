@@ -5,7 +5,14 @@ import pcd8544, framebuf
 from machine import Pin, SPI
 #import time, ustruct
 gc.collect()
-
+'''
+Referencias:
+https://github.com/phikubo/Micropython-para-Esp8266-ejemplos-
+https://es.wikipedia.org/wiki/Sinusoide
+http://andidinata.com/2017/11/nokia-5110-micropython/
+https://lastminuteengineers.com/nokia-5110-lcd-arduino-tutorial/
+http://docs.micropython.org/en/latest/library/framebuf.html
+'''
 
 def test():
     print("Prueba exitosa")
