@@ -1,4 +1,5 @@
 #Por michael
+#no implementado
 import gc
 import sys, time
 import pcd8544, framebuf
@@ -27,14 +28,6 @@ def test():
     lcd = pcd8544.PCD8544(spi, cs, dc, rst)
     buffer = bytearray((lcd.height // 8) * lcd.width)
     #framebuf = framebuf.FrameBuffer1(buffer, lcd.width, lcd.height) 
-    gc.collect()
-    bl.value(0)
-    time.sleep(2)
-    bl.value(1)
-    time.sleep(2)
-    bl.value(0)
-
-
     #lcd.data(buffer)
 
 
