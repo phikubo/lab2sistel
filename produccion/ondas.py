@@ -13,8 +13,10 @@ La ecuacion que simula la suma parcial de armonicos de un pulso rectangular
 y(t)=(4/pi)*sum((sen(2*k-1)/(2*k-1))*t), k=1->n
 Fuente:http://sistemyse.blogspot.com/
 El indice ha cambiado para evitar los numeros pares:
-http://mathworld.wolfram.com/FourierSeriesSquareWave.html 
+http://mathworld.wolfram.com/FourierSeriesSquareWave.html
 
+Solucion al bug de fase: la ecuacion de la onda cambia:
+y(t)=(4/pi)*sum((sen((2*k-1)(w0*t+phi))/(2*k-1))*t), k=1->n
 '''
 
 def urectangular(max, puntos, K, amplitud, w0, phi):
@@ -48,7 +50,7 @@ def urectangular(max, puntos, K, amplitud, w0, phi):
         #print("k -> ",k)
         for t in T:
             #print("Operacion: ", "k -> ",k, ", t -> ",t)
-            y = amplitud*(4/math.pi)*(math.sin((w0*(2*k-1)*t) +phi)/(2*k-1))
+            y = amplitud*(4/math.pi)*(math.sin(((2*k-1)*(w0*t+phi)))/(2*k-1))
             y_record.append(y) #Lista de puntos de la funcion.
             time.sleep_ms(10)
         count=count+1
@@ -99,14 +101,16 @@ if __name__ == "__main__":
     #input: max, puntos para ulinspace. Presicion = n, {n E N}. Indica que tan parecida debe ser la funcion a la curva ideal
     max=84
     puntos=84 #no funciona para puntos>200
-    presicion=12 #K =presicion
+    presicion=8 #K =presicion
     amplitud=16
     w0=0.1
-    phi=10
+    phi=90 #con la fase, genera una onda diente de sierra de -100, con conf. anterior.
     urectangular(max, puntos, presicion, amplitud, w0, phi)
 
 else:
     print("importado gibss")
+
+
 
 
 
