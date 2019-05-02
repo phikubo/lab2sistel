@@ -99,14 +99,15 @@ if __name__ == "__main__":
     #input: max, puntos para ulinspace. Presicion = n, {n E N}. Indica que tan parecida debe ser la funcion a la curva ideal
     max=84
     puntos=84 #no funciona para puntos>200
-    presicion=8 #K =presicion
-    amplitud=14
-    w0=0.09
+    presicion=12 #K =presicion
+    amplitud=16
+    w0=0.1
     phi=0
     urectangular(max, puntos, presicion, amplitud, w0)
 
 else:
     print("importado gibss")
+
 
 
 
