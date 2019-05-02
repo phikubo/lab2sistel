@@ -17,7 +17,7 @@ http://mathworld.wolfram.com/FourierSeriesSquareWave.html
 
 '''
 
-def urectangular(max, puntos, K, amplitud, w0):
+def urectangular(max, puntos, K, amplitud, w0, phi):
     print("urectangular")
 
     import framebuf
@@ -48,7 +48,7 @@ def urectangular(max, puntos, K, amplitud, w0):
         #print("k -> ",k)
         for t in T:
             #print("Operacion: ", "k -> ",k, ", t -> ",t)
-            y = amplitud*(4/math.pi)*(math.sin(w0*(2*k-1)*t)/(2*k-1))
+            y = amplitud*(4/math.pi)*(math.sin((w0*(2*k-1)*t) +phi)/(2*k-1))
             y_record.append(y) #Lista de puntos de la funcion.
             time.sleep_ms(10)
         count=count+1
@@ -102,8 +102,8 @@ if __name__ == "__main__":
     presicion=12 #K =presicion
     amplitud=16
     w0=0.1
-    phi=0
-    urectangular(max, puntos, presicion, amplitud, w0)
+    phi=10
+    urectangular(max, puntos, presicion, amplitud, w0, phi)
 
 else:
     print("importado gibss")
