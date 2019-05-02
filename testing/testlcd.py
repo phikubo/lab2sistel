@@ -1,4 +1,7 @@
 #Por michael
+'''
+Comprueba funcionamiento de lcd
+'''
 import gc
 import sys, time
 import pcd8544

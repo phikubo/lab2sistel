@@ -66,8 +66,8 @@ def urectangular(max, puntos, K, amplitud):
 
 if __name__ == "__main__":
     #input: max, puntos para ulinspace. Presicion = n, {n E N}. Indica que tan parecida debe ser la funcion a la curva ideal
-    max=7.5
-    puntos=40 #no funciona para puntos>200
+    max=84
+    puntos=84 #no funciona para puntos>200
     presicion=10 #K =presicion
     amplitud=1
     urectangular(max, puntos, presicion, amplitud)
