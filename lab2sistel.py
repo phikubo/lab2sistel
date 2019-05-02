@@ -1,5 +1,6 @@
 #Por michael
 #no implementado
+#test
 import gc
 import sys, time
 import pcd8544, framebuf
