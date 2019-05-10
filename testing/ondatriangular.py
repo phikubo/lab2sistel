@@ -80,11 +80,7 @@ if __name__ == "__main__":
     #input: max, puntos para ulinspace. Presicion = n, {n E N}. Indica que tan parecida debe ser la funcion a la curva ideal
     max=84
     puntos=84 #no funciona para puntos>200
-<<<<<<< HEAD
     presicion=9000 #K =presicion
-=======
-    presicion=100 #K =presicion
->>>>>>> d26bd8fa00682639002d125e7c93a2818f4d6a51
     amplitud=16
     w0=0.1
     phi=-90 #con la fase, genera una onda diente de sierra de -100, con conf. anterior.
