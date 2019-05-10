@@ -1,4 +1,6 @@
 #Implemtenado por Michael para plotear funciones sin librerias.
+#Este archivo permite ejecutar scripts en python para su implementacion en micropython.
+#la diferencia radica en que en micropython no existe matplotlib. El resto es igual.
 #Name: ufunctions.
 #import numpy as np
 import matplotlib.pyplot as plt
@@ -77,7 +79,7 @@ if __name__ == "__main__":
     #input: max, puntos para ulinspace. Presicion = n, {n E N}. Indica que tan parecida debe ser la funcion a la curva ideal
     max=84
     puntos=84 #no funciona para puntos>200
-    presicion=1000 #K =presicion
+    presicion=9000 #K =presicion
     amplitud=16
     w0=0.1
     phi=-90 #con la fase, genera una onda diente de sierra de -100, con conf. anterior.
