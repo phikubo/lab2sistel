@@ -33,7 +33,8 @@ def main(max, puntos, K, amplitud, w0, phi):
         #print("k -> ",k)
         for t in T:
             #print("Operacion: ", "k -> ",k, ", t -> ",t)
-            y = amplitud*(4/math.pi)*(math.sin(((2*k-1)*(w0*t+phi)))/(2*k-1))
+            y = (4*amplitud/math.pi**
+2)*(math.cos(((2*k-1)*(w0*t+phi)))/(2*k-1)**2)
             y_record.append(y) #Lista de puntos de la funcion.
             
         count=count+1
@@ -77,7 +78,7 @@ if __name__ == "__main__":
     #input: max, puntos para ulinspace. Presicion = n, {n E N}. Indica que tan parecida debe ser la funcion a la curva ideal
     max=84
     puntos=84 #no funciona para puntos>200
-    presicion=1000 #K =presicion
+    presicion=100 #K =presicion
     amplitud=16
     w0=0.1
     phi=-90 #con la fase, genera una onda diente de sierra de -100, con conf. anterior.
