@@ -1,4 +1,4 @@
-#Por michael
+#Por michael y juan 
 #no implementado
 #test
 import gc
@@ -34,6 +34,7 @@ def test():
 
 if __name__ == "__main__":
     test()
+    print(“fin”)
 else:
     pass
 
