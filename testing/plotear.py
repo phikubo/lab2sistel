@@ -4,10 +4,11 @@ import sys, time
 import pcd8544
 from machine import Pin, SPI
 import math
+import ondas
 #import framebuf
 
 
-def plotseno(w,phi,amplitud):
+def plot(datos):
     import framebuf
     spi = SPI(1, baudrate=328125, polarity=0, phase=0)
     cs = Pin(2) #D4
@@ -24,11 +25,9 @@ def plotseno(w,phi,amplitud):
     time.sleep(1)
     framebuf.fill(0)
     lcd.data(buffer)
-    save=[]
-    for i in range(84):
-        y=24-amplitud*math.sin((i*w)+phi)
-        save.append(y)
-        print(i,round(y), y)
+
+    for i,y in zip(range(84),datos):
+        print(i, " {" ,round(y), "} ")
         time.sleep_ms(40)
         framebuf.pixel(i,round(y),1)
     #eje y
@@ -41,11 +40,17 @@ def plotseno(w,phi,amplitud):
 
 if __name__ == "__main__":
     w=0.09
-    phi=0
+    max=84
+    puntos=84 #no funciona para puntos>200
+    presicion=9 #K =presicion
     amplitud=16
-    plotseno(w,phi,amplitud)
+    w0=0.1
+    phi=90 
+    datos=ondas(max, puntos, presicion, amplitud, w0, phi, tipo)
+    plot(datos)
 else:
     pass
+
 
 
 
