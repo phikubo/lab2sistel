@@ -4,7 +4,7 @@ from machine import Pin
 import time
 #los pines estan ajustados a GPIO y no a las etiquetas internas.
 print("Esp Funcionando correctamente")
-
+#test reflush directory
 buf = bytearray(100)
 dac = DAC(Pin(25, Pin.OUT))
 for i in range(len(buf)):
