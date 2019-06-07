@@ -113,18 +113,18 @@ if __name__ == "__main__":
         func1[i]=128+round(func1[i])
         func2[i]=128+round(func2[i])
         #print(resultado[i], "->", "{",round(128+resultado[i]),"}")
-        print(func1[i], func2[i])
-        time.sleep(0.5)
+        #print(func1[i], "->", func2[i])
+        #time.sleep(0.5)
         
     gc.collect()
     print("ok number")
     dac1 = DAC(Pin(25, Pin.OUT))
     dac2 = DAC(Pin(26, Pin.OUT))
     
-    #try:
-    #    plotdac.pltdac(func1,func2, dac1, dac2)
-    #except Exception as e:
-    #    print(e)
+    try:
+        plotdac.pltdac(func1,func2, dac1, dac2)
+    except Exception as e:
+        print(e)
 
 else:
     print("Ondas.py importado")

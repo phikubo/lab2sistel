@@ -4,6 +4,7 @@ import math
 from machine import DAC
 from machine import Pin
 import time
+import gc
 #los pines estan ajustados a GPIO y no a las etiquetas internas.
 
 def pltdac(func1, func2, dac1, dac2):
