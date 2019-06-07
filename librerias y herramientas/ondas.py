@@ -30,9 +30,9 @@ def main(max, puntos, K, amplitud):
             #print("Operacion: ", "k -> ",k, ", t -> ",t)
             y = amplitud*(4/math.pi)*(math.sin((2*k-1)*t)/(2*k-1))
             y_record.append(y) #Lista de puntos de la funcion.
-        #diseño: esta agregando a la lista ambas funciones.
+        #dise帽o: esta agregando a la lista ambas funciones.
     #
-    print("Puntos: ",len(T), ", tamaño del arreglo ", len(y_record), "presicion: ",K)
+    print("Puntos: ",len(T), ", tama帽o del arreglo ", len(y_record), "presicion: ",K)
     for i in range(puntos):
                 #print("Suma: ", i, " con ", i+(K-1)*puntos )
                 #time.sleep(0.2)
@@ -44,7 +44,7 @@ def main(max, puntos, K, amplitud):
                 #print("Suma while: ", i, " con ", i+(K-1)*puntos )
                 #time.sleep(0.2)
                 y_res[i]=y_res[i]+y_record[i+(K-1)*puntos]
-        print("Tamaño del arreglo res", len(y_res), "presicion: ",K)
+        print("Tama帽o del arreglo res", len(y_res), "presicion: ",K)
         K=K-1
 
     plt.plot(T, y_res, "-o")
