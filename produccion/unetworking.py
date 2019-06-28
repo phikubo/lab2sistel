@@ -1,10 +1,10 @@
 import network
+mired=network.WLAN(network.AP_IF)
 #mired.config(essid="Red_de_prueba_phi")
-#mired.config(essid="<AP_NAME>", authmode=network.AUTH_WPA_WPA2_PSK, password="<password>")
-#mired.active(True)
-#mired.ifconfig('ip')
-#mired.ifconfig('gateway')
-
+mired.config(essid="Red michael upython", authmode=network.AUTH_WPA_WPA2_PSK, password="123456789")
+mired.active(True)
+print(mired.ifconfig())
+#mired.ifconfig()
 
 def create_net(ap_name,passw):
     mired=network.WLAN(network.AP_IF)
@@ -18,7 +18,7 @@ def create_net(ap_name,passw):
 if __name__ == "__main__":
     #mired=network.WLAN(network.AP_IF)
     ap_name="upylab2sistel"
-    passw=123456789
-    create_net(ap_name,passw)
+    passw=str(123456789)
+    #create_net(ap_name,passw)
 else:
     print("networking importado")

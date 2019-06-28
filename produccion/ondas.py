@@ -78,11 +78,11 @@ def ondas(max, puntos, K, amplitud, w0, phi, tipo):
 
 def what_type(tipo):
     if tipo ==1:
-        print("Seno")
+        print("S")
     elif tipo==2:
-        print("Rect")
+        print("R")
     else:
-        print("Triang")
+        print("T")
   
 #dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)
 if __name__ == "__main__":
