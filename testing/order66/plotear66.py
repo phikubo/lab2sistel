@@ -47,7 +47,7 @@ if __name__ == "__main__":
     max=84
     puntos=84 #no funciona para puntos>200
     presicion=3 #K =presicion
-    amplitud=10#antes 16
+    amplitud=10#antes 16x
     w0=0.1
     phi=90
     tipo1=1
