@@ -18,7 +18,7 @@ def main():
         print('Conectando a la red...')
         sta_if.active(True)
         #sta_if.connect('Fidelity','PK132158')
-        sta_if.connect('upylab2sistel','123456789')
+        sta_if.connect('upyl2s','123456789')
         while not sta_if.isconnected() and veces!=4:
             print('Intento: ', veces)
             veces=veces+1
@@ -37,5 +37,6 @@ if __name__ == '__main__':
     main()
 else:
     print('Modulo Conectar_red importado')
+
 
 
