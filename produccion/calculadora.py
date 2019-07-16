@@ -2,11 +2,11 @@
 import math
 import time
 
-def ulinspace(max, puntos):
+def ulinspace(maxx, puntos):
     '''Ejecuta una operacion similar a linspace pero para microcontroladores. Puntos debe ser par si se desean separaciones equidistantes
     en numeros enteros.'''
-    cambio=max/puntos
-    maxim=max
+    cambio=maxx/puntos
+    maxim=maxx
     resultado=[maxim]
     #max=max+1
 
@@ -14,14 +14,13 @@ def ulinspace(max, puntos):
     #    print(max-i+1)
         #print(i-puntos)
     #max=max-1
-    cambio=max/puntos
+    cambio=maxx/puntos
     #print("Rata de cambio: ",cambio)
-    while max > cambio:
-        max=max-cambio
-        resultado.append(max)
+    while maxx > cambio:
+        maxx=maxx-cambio
+        resultado.append(maxx)
         #print(maxim, max)
     return resultado
-
 
 
 
@@ -31,7 +30,7 @@ if __name__ == "__main__":
     #puntos: La cantidad de salidas que se desean obtener del rango.
     max=20
     puntos=3
-    res=ulinspace(max,puntos)
+    res=ulinspace(maxx,puntos)
     print("ok => ", res)
 
     #Pruebas esperadas:

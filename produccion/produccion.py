@@ -1,25 +1,17 @@
+
+
 #import network
 #import network
 import math
 import time
-'''
+
 import gc
 import ondas #->modulo ondas
-import calculadora3
-import plotear
+import calculadora
 from machine import Pin, SPI
 from machine import DAC
-import pcd8544
-import framebuf
 import plotdac
-'''
-def what_type(tipo):
-    if tipo ==1:
-        print("S")
-    elif tipo==2:
-        print("R")
-    else:
-        print("T")
+
 
 def menu2(opcion2):
     time.sleep(0.1)
@@ -38,41 +30,65 @@ def menu2(opcion2):
     return opcion2
     
 def custom_input(opcion3):
-    print("Escriba los valores: ")
+    print("Custom. Escriba los valores: ")
     try:
-        print("Onda 1 <str>(s,r,t): ")
-        tipo1=str(input())
+        max=1
+        puntos=90
+        print("Onda 1 <int>(s->1,r->2,t->3): ")
+        tipo1=int(input())
         print("--------")
-        print("Onda 2 <str>(s,r,t): ")
-        tipo2=str(input())
-        print("--------")
-        print("Presicion <int>(1-10): ")
-        presicion=int(input())
+        print("Onda 2 <int>(s->1,r->2,t->3): ")
+        tipo2=int(input())
         print("--------")
         print("Amplitud <int>(1-20): ")
         amplitud=int(input())
         print("--------")
-        print("Frecuencia <int>: ")
+        print("Frecuencia <int>(2-10): ")
         f=int(input())
-        w0=2*math.pi*f
         print("--------")
-        print("Fase <int>")
-        phi=int(input())
+        print("Fase 1 <int>")
+        phi1=int(input())
+        print("Fase 2 <int>")
+        phi2=int(input())
         print("--------")
+        print("Input:", "onda1:{",tipo1,"} onda2: {", tipo2,"} A: {", amplitud,"} F: ", f, 4, phi1, phi2)
+        print("Un momento, procesando")
+        time.sleep(1)
+        func1=ondas.onda(max, puntos, 4, amplitud, f, phi1, tipo1)
+        func2=ondas.onda(max, puntos, 4, amplitud, f, phi2, tipo2)
+        for i in range(len(func1)):
+            print("{",func1[i],"}", "{",func2[i],"}")
+            func1[i]=128+round(func1[i])
+            func2[i]=128+round(func2[i])
+            
+        gc.collect()
+        dac1 = DAC(Pin(25, Pin.OUT))
+        dac2 = DAC(Pin(26, Pin.OUT))
         
-        print(tipo1,tipo2, amplitud, f, w0, presicion, phi)
-        time.sleep(10)
+        try:
+            plotdac.pltdac(func1,func2, dac1, dac2)
+        except Exception as e:
+            print(e)
+        
         
     except:
         print("Ingresa valores validos")
         print("--------")
     while opcion3 != 9:
         try:
-            print("1->Continuar")
-            print("--------")
-            print("9->Salir")
+            #print("1->Continuar")
+            #print("--------")
+            print("9 ->Salir")
             print("--------")
             opcion3=int(input())
+            #if opcion3==1:
+            #    custom_input(opcion3)
+            #elif opcion3==9:
+            #    opcion2=0
+            #    opcion2=menu2(opcion2)
+            #    return opcion2
+            
+                
             print("--------")
         except:
             print("Ingresa valores validos")
@@ -83,17 +99,18 @@ def custom_input(opcion3):
 
 
 def udefault():
-    tipo1=1
-    tipo2=2
-    max=84
-    puntos=84
+    #tipo1=1
+    #tipo2=2
+    maxx=1
+    puntos=90
     presicion=4
-    amplitud=100
-    w0=0.1
+    amplitud=16
+    f=5
     phi=0
-    '''
-    func1=ondas.ondas(max, puntos, presicion, amplitud, w0, phi, tipo1)
-    func2=ondas.ondas(max, puntos, presicion, amplitud, w0, phi, tipo2)
+    print("Default. Procesando...")
+    #print("holi")
+    func1=ondas.onda(maxx, puntos, presicion, amplitud, f, phi, 2)
+    func2=ondas.onda(maxx, puntos, presicion, amplitud, f, phi, 1)
 
     for i in range(len(func1)):
         print("{",func1[i],"}", "{",func2[i],"}")
@@ -108,7 +125,7 @@ def udefault():
         plotdac.pltdac(func1,func2, dac1, dac2)
     except Exception as e:
         print(e)
-    '''
+    
     
 def ucustom():
     opcion3=0
@@ -154,18 +171,55 @@ if __name__ == "__main__":
     #Main para el menu de opciones.
     print("-----------")
     print("Bienvenido a Micropython Digital Signal Generator (uDSG")
-    print("--------")
-    opcion2=0
-    opcion2=menu2(opcion2)
+    print("-----------")
+    #opcion2=0
+    #opcion2=menu2(opcion2)
     #opcion=inicio(opcion)
     #if opcion==1:
     #    opcion2=menu2(opcion2)
-    if opcion2==1:
-        print("Execute default")
-        udefault()
-    elif opcion2==2:
-        print("Execute escritura de parametros")
-        ucustom()
+    '''
+    cc=0
+    opcion2=0
+    while cc!=3:
+        
+        opcion2=menu2(opcion2)
+
+        if opcion2==1:
+            print("Execute default")
+            udefault()
+        elif opcion2==2:
+            print("Execute escritura de parametros")
+            ucustom()
+        cc=cc+1
+    
+    
+    cc=0
+    while cc!=3:
+        if opcion2==1:
+            print("Execute default")
+            udefault()
+        elif opcion2==2:
+            print("Execute escritura de parametros")
+            ucustom()
+        cc=cc+1
+    '''
+    cc=0
+    while cc!=2:
+      opcion2=0
+      opcion2=menu2(opcion2)
+      if opcion2==1:
+          print("Execute default")
+          udefault()
+      elif opcion2==2:
+          print("Execute escritura de parametros")
+          ucustom()
+      cc=cc+1
+    
  
 else:
     print("networking importado")
+
+
+
+
+

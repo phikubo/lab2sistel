@@ -4,8 +4,8 @@ import time
 #import plotear
 from machine import Pin, SPI
 from machine import DAC
-import pcd8544
-import framebuf
+#import pcd8544
+#import framebuf
 import gc
 import plotdac
 #from machine import Pin
@@ -25,27 +25,32 @@ y = (4*amplitud/math.pi**2)*(math.cos(((2*k-1)*(w0*t+phi)))/(2*k-1)**2)
 
 '''
 
-def ondas(max, puntos, K, amplitud, w0, phi, tipo):
+def onda(maxx, puntos, K, amplitud, f, phi, tipo):
     '''Calcula puntos de una onda de tipo tipo con los parametros dados'''
     count=0
     y_record=[] #
     y_record2=[]
     y_res=[]
-    T = calculadora.ulinspace(max,puntos)
+
+    T = calculadora.ulinspace(maxx,puntos)
+    tx=[]
+    for i in T:
+        tx.append(maxx-i)
+
     if tipo==1:
-        for t in range(puntos):
+        for t in tx:
             #y_sen=24-amplitud*math.sin((t*w0)+phi)
-            y_sen=amplitud*math.sin((t*w0)+phi)
+            y_sen=24-amplitud*math.sin((t*2*math.pi*f)+phi)
             y_record2.append(y_sen)
         print(len(y_record2))
     else:
         for k in range(1,K+1):
-            for t in T:
+            for t in tx:
                 if tipo==2:
-                    y = amplitud*(4/math.pi)*(math.sin(((2*k-1)*(w0*t+phi)))/(2*k-1))
+                    y = amplitud*(4/math.pi)*(math.sin(((2*k-1)*(2*math.pi*f*t+phi)))/(2*k-1))
                     y_record.append(y)
                 elif tipo==3:
-                    y = (4*amplitud/math.pi**2)*(math.cos(((2*k-1)*(w0*t+phi)))/(2*k-1)**2)
+                    y = (4*amplitud/math.pi**2)*(math.cos(((2*k-1)*(2*math.pi*f*t+phi)))/(2*k-1)**2)
                     y_record.append(y)
                 
                 #y_record.append(y) #Lista de puntos de la funcion.
@@ -75,14 +80,6 @@ def ondas(max, puntos, K, amplitud, w0, phi, tipo):
     else:
         return y_res
 
-
-def what_type(tipo):
-    if tipo ==1:
-        print("S")
-    elif tipo==2:
-        print("R")
-    else:
-        print("T")
   
 #dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)
 if __name__ == "__main__":
@@ -92,30 +89,23 @@ if __name__ == "__main__":
     #3: triang
     tipo=3
     #parametros=[max, puntos, presicion, amplitud, w0, phi]
-    max=84
-    puntos=84 #no funciona para puntos>200
+    max=1
+    puntos=90 #no funciona para puntos>200
     presicion=4 #K =presicion
-    amplitud=100 #16 en lcd
-    w0=0.1
+    amplitud=16 #16 en lcd
+    f=5
     phi=0 #90
-    #resultado=ondas(max, puntos, presicion, amplitud, w0, phi, tipo)
-    func1=ondas(max, puntos, presicion, amplitud, w0, phi, 1)
-    func2=ondas(max, puntos, presicion, amplitud, w0, phi, 2)
-    #print("plot", len(resultado), )
-    #print("---")
+    
+    func1=onda(max, puntos, presicion, amplitud, f, phi, 2)
+    func2=onda(max, puntos, presicion, amplitud, f, phi, 1)
+
     print("ok, onda:")
-    #what_type(tipo)
-    #print("---")
-    #import plotear
-    #plotear.plot(resultado, puntos)
+    
     for i in range(len(func1)):
         print("{",func1[i],"}", "{",func2[i],"}")
+        time.sleep_ms(30)
         func1[i]=128+round(func1[i])
-        func2[i]=128+round(func2[i])
-        #print(resultado[i], "->", "{",round(128+resultado[i]),"}")
-        #print(func1[i], "->", func2[i])
-        #time.sleep(0.5)
-        
+        func2[i]=128+round(func2[i])        
     gc.collect()
     print("ok number")
     dac1 = DAC(Pin(25, Pin.OUT))
@@ -128,6 +118,9 @@ if __name__ == "__main__":
 
 else:
     print("Ondas.py importado")
+
+
+
 
 
 

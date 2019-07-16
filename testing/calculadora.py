@@ -17,8 +17,10 @@ def ulinspace(max, puntos):
     cambio=max/puntos
     #print("Rata de cambio: ",cambio)
     while max > cambio:
+        
         max=max-cambio
         resultado.append(max)
+        #time.sleep_ms(60)
         #print(maxim, max)
     return resultado
 
@@ -29,11 +31,14 @@ if __name__ == "__main__":
     #Entradas:
     #max: El rango en el que las operaciones se ejecutan.
     #puntos: La cantidad de salidas que se desean obtener del rango.
-    max=20
-    puntos=3
-    res=ulinspace(max,puntos)
+    maxx=1
+    puntos=100
+    res=ulinspace(maxx,puntos)
     print("ok => ", res)
-
+    tx=[]
+    for i in res:
+        tx.append(maxx-i)
+    print(tx)
     #Pruebas esperadas:
     #output 20,10 si p=2
     #output 20, 15, 10, 5 si p=4

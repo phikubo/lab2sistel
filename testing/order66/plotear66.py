@@ -25,7 +25,7 @@ def plot(dato1, dato2):
     time.sleep(1)
     framebuf.fill(0)
     lcd.data(buffer)
-
+    dato=[]
     for i,y in zip(range(84),dato1):
         print(i, " {" ,round(y), "} ")
         time.sleep_ms(40)
@@ -34,6 +34,12 @@ def plot(dato1, dato2):
         print(i, " {" ,round(y), "} ")
         time.sleep_ms(40)
         framebuf.pixel(i,22-round(y),1)
+    time.sleep(3)
+    for i,y in zip(range(84),dato2):
+        dato.append(dato1[i]+dato2[i])
+        print(i, " {" ,round(y), "} ")
+        time.sleep_ms(40)
+        framebuf.pixel(i,22-round(dato[i]),1)
     #eje y
     #print(save)
     framebuf.vline(0, 0, 96, 0xffff)

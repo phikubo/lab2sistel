@@ -7,14 +7,14 @@ def main():
 	s=socket.socket()
 	s.connect((host,port))
 
-	message=raw_input("-->rwinpt")
+	message="hola"
 	while message!='q':
 
 		s.send(message.encode())
 		data=s.recv(1024).decode()
 
 		print("Recibido del servidor",str(data))
-		message=raw_input("--->")
+		message=
 
 	s.close()
 

@@ -2,7 +2,7 @@ import socket
 
 def main():
 	host='192.168.4.1'
-	port=3030
+	port=3031
 	addr_server=socket.getaddrinfo(host,port)[0][-1]
 	print('Addr_server: ',addr_server)
 	s=socket.socket()
@@ -15,8 +15,7 @@ def main():
 
 	while True:
 		data=c.recv(1024).decode()
-		if not data:
-			break
+		
 		print("Recibido desde el cliente: ",str(data))
 		data=">>>"+str(data)
 		print("sending to cliente: ",str(data))
@@ -29,3 +28,4 @@ def main():
 if __name__ == '__main__':
 	main()
 	#considerar hacer esto cada tantos segundos, o hacerlo while true
+
