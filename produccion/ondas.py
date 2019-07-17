@@ -19,7 +19,7 @@ y=24-amplitud*math.sin((i*w)+phi)
 rectangular
 y = amplitud*(4/math.pi)*(math.sin(((2*k-1)*(w0*t+phi)))/(2*k-1))
 
-tringular origina, luego se aumenta la amplitud para coincidir con las otras señales.
+tringular origina, luego se aumenta la amplitud para coincidir con las otras se帽ales.
 y = (4*amplitud/math.pi**2)*(math.cos(((2*k-1)*(w0*t+phi)))/(2*k-1)**2)
 
 '''
@@ -77,9 +77,9 @@ def onda(maxx, puntos, K, amplitud, f, phi, tipo):
 if __name__ == "__main__":
     maxx=1
     puntos=100 #no funciona para puntos>200
-    presicion=3 #K =presicion
-    amplitud=15 #maximo 100
-    f=2
+    presicion=4 #Se recomienda 4, hasta maximo 10 (en pruebas).
+    amplitud=70 #maximo teorico 100, maximo posible 70.
+    f=2 #Se recomienda hasta 10 (100 Hz)
     #phi1=math.pi/2 #90
     #phi2=3*math.pi/2
     tipo1=3
@@ -135,6 +135,7 @@ if __name__ == "__main__":
 
 else:
     print("Ondas.py importado")
+
 
 
 
