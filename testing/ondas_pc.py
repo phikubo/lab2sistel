@@ -33,7 +33,7 @@ def ondas(maxx, puntos, K, amplitud, f, phi, tipo):
 
     if tipo==1:
         for t in tx:
-            y_sen=24-amplitud*math.sin((t*2*math.pi*f)+phi)
+            y_sen=amplitud*math.sin((t*2*math.pi*f)+phi)
             y_record2.append(y_sen)
         print(len(y_record2))
     else:
@@ -75,20 +75,12 @@ def ondas(maxx, puntos, K, amplitud, f, phi, tipo):
   
 #dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)
 if __name__ == "__main__":
-    #tipo=int(input("escriba el tipo\n"))
-    tipo=1
-    #tipo=1
-    #parametros=[max, puntos, presicion, amplitud, w0, phi]
+    #parametros
     maxx=1
-    puntos=200 #no funciona para puntos>200
-    #puntos=max
-    presicion=9 #K =presicion
+    puntos=100 #no funciona para puntos>200
+    presicion=4 #K =presicion
     amplitud=16
-    f=3
-    phi=0
-    
-    resultado=ondas(maxx, puntos, presicion, amplitud, f, phi, tipo)
-    
+    f=2
 
     tipo1=1
     phi1=0
@@ -96,7 +88,7 @@ if __name__ == "__main__":
     tipo2=2
     phi2=0 #antes:3*math.pi/2
 
-    f1=ondas(maxx, puntos, presicion, amplitud, f, phi1, tipo1)
+    f1=ondas(maxx, puntos, presicion, amplitud, 4*f+5, phi1, tipo1)
     f2=ondas(maxx, puntos, presicion, amplitud, f, phi2, tipo2)
     
     
@@ -106,7 +98,7 @@ if __name__ == "__main__":
         #time.sleep(1)
         fs.append(x+y)
     #print(fs)
-    print(len(resultado))
+    
     T = calculadora.ulinspace(maxx,puntos)
     tx=[]
     for i in T:
