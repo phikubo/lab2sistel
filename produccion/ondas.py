@@ -103,16 +103,18 @@ if __name__ == "__main__":
     dac1 = DAC(Pin(25, Pin.OUT))
     dac2 = DAC(Pin(26, Pin.OUT))
     
-    print("Ejecutando Dac:")
+    print("Ejecutando Dac...")
     try:
         plotdac.pltdac(func1,func2, dac1, dac2)
     except Exception as e:
         print(e)
-    
+    print("Ejecucion Exitosa.")
+    #Este procesamiento es necesario en debug. No eliminar en pruebas.
+    '''
     fs=[]
     for x,y in zip(func1,func2):
         fs.append(x+y)
-        
+
     T = calculadora.ulinspace(maxx,puntos)
     tx=[]
     for i in T:
@@ -129,6 +131,7 @@ if __name__ == "__main__":
     plt.title('Fenomeno de Gibbs', fontsize=16, color='r')
     plt.grid(True)
     plt.show()
+    '''
 
 else:
     print("Ondas.py importado")
