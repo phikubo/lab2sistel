@@ -9,6 +9,8 @@ def main():
 
 	message="Saludos..."
 	s.send(message.encode())
+	#Todo lo anterior funciona para el requeriemiento.
+	
 	#data=s.recv(1024).decode()
 	msg="Msg 1"
 	time.sleep(2)

@@ -1,8 +1,8 @@
 import socket
 
 def main():
-	local_host='192.168.4.1'
-	local_port=3031
+	local_host='192.168.1.12'
+	local_port=3333
 	addr_server=socket.getaddrinfo(local_host,local_port)[0][-1]
 	print('Addr_server: ',addr_server)
 	s=socket.socket()

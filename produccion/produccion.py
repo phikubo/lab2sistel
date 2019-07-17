@@ -4,7 +4,7 @@
 #import network
 import math
 import time
-
+import socket
 import gc
 import ondas #->modulo ondas
 import calculadora
@@ -29,7 +29,7 @@ def menu2(opcion2):
             print("--------")
     return opcion2
     
-def custom_input(opcion3):
+def custom_input(opcion3,s):
     print("Custom. Escriba los valores: ")
     try:
         max=1
@@ -51,8 +51,13 @@ def custom_input(opcion3):
         print("Fase 2 <int>")
         phi2=int(input())
         print("--------")
-        print("Input:", "onda1:{",tipo1,"} onda2: {", tipo2,"} A: {", amplitud,"} F: ", f, 4, phi1, phi2)
+        print("Input=>", "onda1:{",tipo1,"}, onda2: {", tipo2,"}, A: {", amplitud,"}")
+        print("F: ", f, ", k: ",4, "Fase1: ",phi1, "Fase 2: ", phi2)
+
         print("Un momento, procesando")
+        data='%s %s %s %s %s %s'%(tipo1,tipo2,amplitud,f,phi1,phi2)
+        s.send(data.encode())
+
         time.sleep(1)
         func1=ondas.onda(max, puntos, 4, amplitud, f, phi1, tipo1)
         func2=ondas.onda(max, puntos, 4, amplitud, f, phi2, tipo2)
@@ -127,7 +132,7 @@ def udefault():
         print(e)
     
     
-def ucustom():
+def ucustom(s):
     opcion3=0
     #tipo1=1
     #tipo2=2
@@ -137,7 +142,7 @@ def ucustom():
     #amplitud=100
     #w0=0.1
     #phi=0
-    custom_input(opcion3)
+    custom_input(opcion3,s)
 
     #flag=False
     #while == False:
@@ -172,6 +177,10 @@ if __name__ == "__main__":
     print("-----------")
     print("Bienvenido a Micropython Digital Signal Generator (uDSG")
     print("-----------")
+    to_host='192.168.1.12'
+    to_port=3334
+    s=socket.socket()
+    s.connect((to_host,to_port))
     #opcion2=0
     #opcion2=menu2(opcion2)
     #opcion=inicio(opcion)
@@ -212,7 +221,7 @@ if __name__ == "__main__":
           udefault()
       elif opcion2==2:
           print("Execute escritura de parametros")
-          ucustom()
+          ucustom(s)
       cc=cc+1
     
  
